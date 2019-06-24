@@ -1,4 +1,4 @@
-// DISASTER VACATION SIMULATOR
+//DISASTER VACATION SIMULATOR
 
 //Functionality & variable declaration
 let DangerValue = 0;
@@ -10,14 +10,18 @@ function rollDice(numberOfSides){
 function rollWeightedDice(DangerValue) {
     //5-Sided dice roll <-- based off the weight.arrays length of 5 different strings
     if (DangerValue > 20) {
-        let weight = [0.35,0.45,0.55,0.65, 0.75]
-        let weightedValue = rollDice(weight.length);
-        DangerValue = weightedValue * 2 * DangerValue;
+        let weight = [0.70,0.90,1.10,1.30,1.50]
+        let weightedArray = rollDice(weight.length);
+        let weightedValue = weight [weightedArray];
+        DangerValue = weightedValue * DangerValue;
+        return DangerValue;
     }
     else {
-        let weight = [0.25,0.35,0.45,0.55, 0.65]
-        let weightedValue = rollDice(weight.length);
-        DangerValue = weightedValue * 2 * DangerValue;
+        let weight = [0.50,0.70,0.90,1.10,1.30]
+        let weightedArray = rollDice(weight.length);
+        let weightedValue = weight [weightedArray];
+        DangerValue = weightedValue * DangerValue;
+        return DangerValue;
     }
 }
 //Gameplay
@@ -51,12 +55,42 @@ let resultOfContinent = rollDice(7);
         window.alert ('South America. Danger value = 6');
         DangerValue = 6;
     }
-resultOfSeason = rollDice(4);
-    if (resultOfContinent === 1 && resultOfSeason === 1){
-        window.alert ('Winter in Antartica. Goodbye.');
-        document.location.reload();
+let reselectPrompt = window.prompt ("Do you want to pick another country?");
+    if ( reselectPrompt == "yes" || reselectPrompt == "Yes") {
+        resultOfContinent = rollDice(7);
+        if (resultOfContinent === 1){
+        window.alert ('Antartica. Danger value = 10');
+        DangerValue = 10;
+        }
+        else if (resultOfContinent === 2){
+        window.alert ('Africa. Danger value = 7');
+        DangerValue = 7;
+        }
+        else if (resultOfContinent === 3){
+        window.alert ('Asia. Danger value = 4');
+        DangerValue = 4;
+        }
+        else if (resultOfContinent === 4){
+        window.alert ('Australia. Danger value = 5');
+        DangerValue = 5;
+        }
+        else if (resultOfContinent === 5){
+        window.alert ('Europe. Danger value = 3');
+        DangerValue = 3;
+        }
+        else if (resultOfContinent === 6){
+        window.alert ('North America. Danger value = 4');
+        DangerValue = 4;
+        }
+        else{
+        window.alert ('South America. Danger value = 6');
+        DangerValue = 6;
+        }
     }
-    else if (resultOfSeason === 1) {
+    else {
+    }
+resultOfSeason = rollDice(4);
+    if (resultOfSeason === 1) {
         window.alert ('Winter. Danger value = 8');
         DangerValue = DangerValue + 8;
     }
@@ -167,7 +201,6 @@ let veteranStatus = window.prompt ("Are you a retired military veteran?");
     else {
     }
 window.alert('Based on experience, your new level of danger is ' + DangerValue + ' of 40. Click okay to determine your fate');
-
 rollWeightedDice(DangerValue);
 if (DangerValue < 5){
     window.alert ('You miraculously made it out alive. Recovery time: 1 day.')
