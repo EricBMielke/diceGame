@@ -1,20 +1,27 @@
 // DISASTER VACATION SIMULATOR
 
-//Functionality
-
+//Functionality & variable declaration
+let DangerValue = 0;
 function rollDice(numberOfSides){
     let randomNumber = Math.floor((Math.random() * (numberOfSides) + 1));
     return randomNumber
 }
 
-function rollWeightedDice (numberOfSides){
- 
-
+function rollWeightedDice(DangerValue) {
+    //5-Sided dice roll <-- based off the weight.arrays length of 5 different strings
+    if (DangerValue > 20) {
+        let weight = [0.35,0.45,0.55,0.65, 0.75]
+        let weightedValue = rollDice(weight.length);
+        DangerValue = weightedValue * 2 * DangerValue;
+    }
+    else {
+        let weight = [0.25,0.35,0.45,0.55, 0.65]
+        let weightedValue = rollDice(weight.length);
+        DangerValue = weightedValue * 2 * DangerValue;
+    }
 }
-
 //Gameplay
 window.alert ('Welcome to the most dangerous game ever played');
-let DangerValue = 0;
 let resultOfContinent = rollDice(7);
     if (resultOfContinent === 1){
         window.alert ('Antartica. Danger value = 10');
@@ -47,7 +54,7 @@ let resultOfContinent = rollDice(7);
 resultOfSeason = rollDice(4);
     if (resultOfContinent === 1 && resultOfSeason === 1){
         window.alert ('Winter in Antartica. Goodbye.');
-        location.reload();
+        document.location.reload();
     }
     else if (resultOfSeason === 1) {
         window.alert ('Winter. Danger value = 8');
@@ -55,7 +62,7 @@ resultOfSeason = rollDice(4);
     }
     else if (resultOfSeason === 2) {
         window.alert ('Fall. Danger value = 3');
-        DangerValue = DangerValue + 5;
+        DangerValue = DangerValue + 3;
     }
     else if (resultOfSeason === 3) {
         window.alert ('Summer. Danger value = 1');
@@ -76,7 +83,7 @@ resultOfAccommodation = rollDice(6);
     }
     else if (resultOfAccommodation === 3) {
         window.alert ('Couch surfing. Danger value = 7');
-        DangerValue = DangerValue + 8;
+        DangerValue = DangerValue + 7;
     }
     else if (resultOfAccommodation === 4) {
         window.alert ('Hostel. Danger value = 5');
@@ -84,7 +91,7 @@ resultOfAccommodation = rollDice(6);
     }
     else if (resultOfAccommodation === 5) {
         window.alert ('Visiting a friend. Danger value = 1');
-        DangerValue = DangerValue + 8;
+        DangerValue = DangerValue + 1;
     }
     else {
         window.alert ('No plans on where to sleep. Danger value = 8');
@@ -141,28 +148,48 @@ resultOfDisaster = rollDice(12);
     }
 window.alert('Your current level of danger is ' + DangerValue + ' of 40.');
 let experience = window.prompt('On a scale of 1-3, how experienced of a traveler are you?');
-    if (experience == "1" && DangerValue > 22){
-        DangerValue = DangerValue * (rollDice(10) / 5) * 1.5;
+    if (experience == "1"){
+        DangerValue = DangerValue * (rollDice(10) / 5) * 1.2;
     }
-    else if (experience == "2" && DangerValue > 22){
+    else if (experience == "2"){
         DangerValue = DangerValue * (rollDice(10) / 5) * 1;
     }
-    else if (experience == "3" && DangerValue > 22){
-        DangerValue = DangerValue * (rollDice(10) / 5) * .3;
+    else if (experience == "3"){
+        DangerValue = DangerValue * (rollDice(10) / 5) * .8;
     }
-    else if (experience == "1" && DangerValue < 22){
-        DangerValue = DangerValue * (rollDice(10) / 5) * 1.5;
-        }
-    else if (experience == "2" && DangerValue < 22){
-        DangerValue = DangerValue * (rollDice(10) / 5) * 1;
-        }
-    else if (experience == "3" && DangerValue < 22){
-        DangerValue = DangerValue * (rollDice(10) / 5) * .3;
-        }
     else {
         DangerValue = DangerValue * (rollDice(10) / 5) * 1;
     }
+let veteranStatus = window.prompt ("Are you a retired military veteran?");
+    if ( veteranStatus == "yes" || veteranStatus == "Yes") {
+        DangerValue = 1;
+    }
+    else {
+    }
+window.alert('Based on experience, your new level of danger is ' + DangerValue + ' of 40. Click okay to determine your fate');
 
-window.alert('Based on experince, your new level of danger is ' + DangerValue + ' of 40. Click okay to determine your fate');
-
-
+rollWeightedDice(DangerValue);
+if (DangerValue < 5){
+    window.alert ('You miraculously made it out alive. Recovery time: 1 day.')
+}
+else if (5 < DangerValue && DangerValue< 10){
+    window.alert ('One broken arm is not awful. You live to fight another day. Recovery time: 6 weeks.');
+}
+else if (10 < DangerValue && DangerValue < 15){
+    window.alert ('Alive, but scarred. You suffered traumatic brain injuries and have partial memory loss. Recovery time: Years of therapy');
+}
+else if (15 < DangerValue && DangerValue < 20){
+    window.alert ('Loss of legs coupled with  severe speach impediment. Recovery time: Full recovery is an impossibility.');
+}
+else if (20 < DangerValue && DangerValue < 25){
+    window.alert ('Admitted into the hospital, 2 days in a coma. Died.');
+}
+else if (25 < DangerValue && DangerValue < 30){
+    window.alert ('Complication with recovery surgery, 2 weeks in the ICU. Died.');
+}
+else if (30 < DangerValue && DangerValue < 35){
+    window.alert ('Brain hemorhagging. One month of vision impairment, followed by 1 month of muscle distrophy. Died. ');
+}
+else {
+    window.alert ('Months of agonizing fighting to overcome the injuries that were suffered.  Died.')
+}
