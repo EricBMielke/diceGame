@@ -15,12 +15,14 @@ function rollWeightedDice(DangerValue) {
         let weightedValue = weight [weightedArray];
         DangerValue = weightedValue * DangerValue;
         return DangerValue;
+        console.log(DangerValue);
     }
     else {
         let weight = [0.50,0.70,0.90,1.10,1.30]
         let weightedArray = rollDice(weight.length);
         let weightedValue = weight [weightedArray];
         DangerValue = weightedValue * DangerValue;
+        console.log(DangerValue);
         return DangerValue;
     }
 }
@@ -201,7 +203,7 @@ let veteranStatus = window.prompt ("Are you a retired military veteran?");
     else {
     }
 window.alert('Based on experience, your new level of danger is ' + DangerValue + ' of 40. Click okay to determine your fate');
-rollWeightedDice(DangerValue);
+DangerValue = rollWeightedDice(DangerValue);
 if (DangerValue < 5){
     window.alert ('You miraculously made it out alive. Recovery time: 1 day.')
 }
