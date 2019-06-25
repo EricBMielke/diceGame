@@ -69,6 +69,8 @@ function runGame(str){
     //         window.alert('Better score than your last vacation. You are getting better at this thing!');
     //     }
     // }
+    document.getElementById("stuff").innerHTML = dangerValue;
+
 }
 
 function determineContinent(dangerValue, resultOfContinent){
@@ -437,4 +439,20 @@ function overallResult (dangerValue){
     window.alert ('Months of agonizing fighting to overcome the injuries that were suffered.  Died.')
     }
     return dangerValue;
+}
+
+function oneFinalAttempt (){
+    var response = document.getElementById("thing").value;
+    let valueToGrab = document.getElementById("stuff").innerHTML;
+    if (response == 'yes' || response == 'Yes'){
+    let weight = [0.0,0.5,1.0,1.50,2.00]
+    let weightedArray = rollDice(weight.length);
+    let weightedValue = weight [weightedArray-1];
+    dangerValue = weightedValue * valueToGrab;
+    console.log ('YAY');
+    return dangerValue;
+    }
+    else{
+    console.log ('Thanks for playing');
+    }
 }
