@@ -295,5 +295,3 @@ function overallResult (dangerValue){
     }
     return dangerValue;
 }
-
-let hereWeGo = runGame ('Let us begin');

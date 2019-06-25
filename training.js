@@ -22,7 +22,7 @@ while (experienceTraining){
         window.alert('Incorrect');
     }
 }
-window.alert ('You are ready to return');
+confirm("Click okay to return to Vacation Roullette");
 window.location.href = "C:/Users/Eric/Documents/devCodeCamp/diceGame/index.html"
 
 
