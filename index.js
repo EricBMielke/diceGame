@@ -1,6 +1,6 @@
 //DISASTER VACATION SIMULATOR
 
-//Functionality & variable declaration
+//Dice rolling && weighted dice rolling functions
 function rollDice(numberOfSides){
     let randomNumber = Math.floor((Math.random() * (numberOfSides) + 1));
     return randomNumber
@@ -27,7 +27,7 @@ function rollWeightedDice(dangerValue){
 //Gameplay
 function runGame(str){
     let dangerValue = 0;
-
+    let firstDangerValue = false;
     window.alert ('Welcome to the most dangerous game ever played');
     let resultOfContinent = rollDice(7);
     dangerValue = determineContinent(dangerValue, resultOfContinent);
@@ -55,7 +55,22 @@ function runGame(str){
     window.alert('Your overall danger score is ' + dangerValue);
     dangerValue = luckyPersonCheck(dangerValue, resultOfContinent, resultOfSeason, resultOfAccommodation, resultOfDisaster);
     dangerValue = overallResult (dangerValue);
-
+    let replayPrompt = window.prompt ("Are you willing to risk it all again?");
+    if (replayPrompt == "yes" || replayPrompt == "Yes"){
+        firstDangerValue = dangerValue;
+        runGame ('Replay');
+    }
+    else {
+        firstDangerValue = false;
+    }
+    if (firstDangerValue){
+        if (firstDangerValue > dangerValue){
+            window.alert('Your fate did not improve from the previous attempt.');
+        }
+        else {
+            window.alert('Better score than your last vacation. You are getting better at this thing!');
+        }
+    }
 }
 
 function determineContinent(dangerValue, resultOfContinent){
