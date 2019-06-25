@@ -243,6 +243,7 @@ function determineDisaster (dangerValue, resultOfDisaster){
 }
 
 function experiencedTraveler (dangerValue, experience){
+    //Incorporating a 10 sided dice to help determine what the multiplier is for the level of experience of the user
     if (experience == "1"){
         dangerValue = dangerValue * (rollDice(10) / 5) * 1.2;
     }
