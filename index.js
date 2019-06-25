@@ -62,6 +62,11 @@ function runGame(str){
     }
     else {
         firstDangerValue = false;
+        let trainingMode = window.prompt ("Would you like to enter training mode");
+        if (trainingMode == 'yes' || trainingMode == 'Yes'){
+            window.location.href = "C:/Users/Eric/Documents/devCodeCamp/diceGame/training.html"
+
+        }
     }
     if (firstDangerValue){
         if (firstDangerValue > dangerValue){
