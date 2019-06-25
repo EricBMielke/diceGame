@@ -47,7 +47,7 @@ function runGame(str){
     dangerValue = experiencedTraveler (dangerValue, experience);
     let veteranStatus = window.prompt ("Are you a retired military veteran?");
     if ( veteranStatus == "yes" || veteranStatus == "Yes") {
-        dangerValue = 1;
+        dangerValue = dangerValue / 2;
     }
     window.alert('Based on experience, your new level of danger is ' + dangerValue + '. Click okay to determine your fate');
     window.alert('Here comes one of your final chances to get lucky');
