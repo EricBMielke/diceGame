@@ -1,12 +1,19 @@
 <!DOCTYPE html>
+
 <html>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <head>
         <title>Vacation Roullette</title>
     </head>
 <body>
-    <button onclick= "runGame('lets begin')" class ='button'>Lets play some disaster vacation!</button>
-
+<button onclick= "runGame('lets begin')" class ='button'>Lets play some disaster vacation!</button>
+    <table id = "overallTable">
+            <tr>
+              <th>Category</th>
+              <th>Result</th>
+              <th>Danger Value</th>
+            </tr>
+          </table>
 <!--Always load JS last because if HTML isn't loaded, the script is going to be pointing at null classes-->
     <script src="index.js"></script>
     <img src="disasterVacation.jpg" id="background">

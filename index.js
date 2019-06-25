@@ -28,216 +28,358 @@ function rollWeightedDice(dangerValue){
 function runGame(str){
     let dangerValue = 0;
     let firstDangerValue = false;
-    window.alert ('Welcome to the most dangerous game ever played');
     let resultOfContinent = rollDice(7);
     dangerValue = determineContinent(dangerValue, resultOfContinent);
-    let reselectPrompt = window.prompt ("Do you want to pick another country?");
-    if (reselectPrompt == 'yes' || reselectPrompt == "Yes"){
-        resultOfContinent = rollDice(7);
-        dangerValue = updateCountry (dangerValue, resultOfContinent);
-    }
     let resultOfSeason = rollDice(4);
     dangerValue = determineSeason (dangerValue,resultOfSeason);
     let resultOfAccommodation = rollDice(6);
     dangerValue = determineAccomodation (dangerValue, resultOfAccommodation);
     let resultOfDisaster = rollDice(12);
     dangerValue = determineDisaster (dangerValue, resultOfDisaster);
-    window.alert('Your current level of danger is ' + dangerValue + '.');
-    let experience = window.prompt('On a scale of 1-3, how experienced of a traveler are you?');
-    dangerValue = experiencedTraveler (dangerValue, experience);
-    let veteranStatus = window.prompt ("Are you a retired military veteran?");
-    if ( veteranStatus == "yes" || veteranStatus == "Yes") {
-        dangerValue = dangerValue / 2;
-    }
-    window.alert('Based on experience, your new level of danger is ' + dangerValue + '. Click okay to determine your fate');
-    window.alert('Here comes one of your final chances to get lucky');
+    // let experience = window.prompt('On a scale of 1-3, how experienced of a traveler are you?');
+    // dangerValue = experiencedTraveler (dangerValue, experience);
+    // let veteranStatus = window.prompt ("Are you a retired military veteran?");
+    // if ( veteranStatus == "yes" || veteranStatus == "Yes") {
+    //     dangerValue = dangerValue / 2;
+    // }
+    // window.alert('Based on experience, your new level of danger is ' + dangerValue + '. Click okay to determine your fate');
+    // window.alert('Here comes one of your final chances to get lucky');
     dangerValue = rollWeightedDice(dangerValue);
-    window.alert('Your overall danger score is ' + dangerValue);
+    // window.alert('Your overall danger score is ' + dangerValue);
     dangerValue = luckyPersonCheck(dangerValue, resultOfContinent, resultOfSeason, resultOfAccommodation, resultOfDisaster);
-    dangerValue = overallResult (dangerValue);
-    let replayPrompt = window.prompt ("Are you willing to risk it all again?");
-    if (replayPrompt == "yes" || replayPrompt == "Yes"){
-        firstDangerValue = dangerValue;
-        runGame ('Replay');
-    }
-    else {
-        firstDangerValue = false;
-        let trainingMode = window.prompt ("Would you like to enter training mode");
-        if (trainingMode == 'yes' || trainingMode == 'Yes'){
-            window.location.href = "C:/Users/Eric/Documents/devCodeCamp/diceGame/training.html"
+    console.log(overallResult (dangerValue));
+    // let replayPrompt = window.prompt ("Are you willing to risk it all again?");
+    // if (replayPrompt == "yes" || replayPrompt == "Yes"){
+    //     firstDangerValue = dangerValue;
+    //     runGame ('Replay');
+    // }
+    // else {
+    //     firstDangerValue = false;
+    //     let trainingMode = window.prompt ("Would you like to enter training mode");
+    //     if (trainingMode == 'yes' || trainingMode == 'Yes'){
+    //         window.location.href = "C:/Users/Eric/Documents/devCodeCamp/diceGame/training.html"
 
-        }
-    }
-    if (firstDangerValue){
-        if (firstDangerValue > dangerValue){
-            window.alert('Your fate did not improve from the previous attempt.');
-        }
-        else {
-            window.alert('Better score than your last vacation. You are getting better at this thing!');
-        }
-    }
+    //     }
+    // }
+    // if (firstDangerValue){
+    //     if (firstDangerValue > dangerValue){
+    //         window.alert('Your fate did not improve from the previous attempt.');
+    //     }
+    //     else {
+    //         window.alert('Better score than your last vacation. You are getting better at this thing!');
+    //     }
+    // }
 }
 
 function determineContinent(dangerValue, resultOfContinent){
+    var table = document.getElementById("overallTable");
     if (resultOfContinent === 1){
-        window.alert ('Antartica. Danger value = 10');
         dangerValue += 10;
+        var row1 = table.insertRow(1);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Continent";
+        cell2.innerHTML = "Antartica";
+        cell3.innerHTML = "10";
+
+
     }
     else if (resultOfContinent === 2){
-        window.alert ('Africa. Danger value = 7');
         dangerValue += 7;
+        var row1 = table.insertRow(1);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Continent";
+        cell2.innerHTML = "Africa";
+        cell3.innerHTML = "7";
     }
     else if (resultOfContinent === 3){
-        window.alert ('Asia. Danger value = 4');
         dangerValue += 4;
+        var row1 = table.insertRow(1);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Continent";
+        cell2.innerHTML = "Asia";
+        cell3.innerHTML = "4";
     }
     else if (resultOfContinent === 4){
-        window.alert ('Australia. Danger value = 5');
         dangerValue += 5;
+        var row1 = table.insertRow(1);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Continent";
+        cell2.innerHTML = "Australia";
+        cell3.innerHTML = "5";
     }
     else if (resultOfContinent === 5){
-        window.alert ('Europe. Danger value = 3');
         dangerValue += 3;
+        var row1 = table.insertRow(1);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Continent";
+        cell2.innerHTML = "Europe";
+        cell3.innerHTML = "3";
     }
     else if (resultOfContinent === 6){
-        window.alert ('North America. Danger value = 4');
         dangerValue += 4;
+        var row1 = table.insertRow(1);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Continent";
+        cell2.innerHTML = "North America";
+        cell3.innerHTML = "4";
     }
     else {
-        window.alert ('South America. Danger value = 6');
         dangerValue += 6;
-    }
-    return dangerValue;
-}
-
-function updateCountry (dangerValue, resultOfContinent){
-    if (resultOfContinent === 1){
-        window.alert ('Antartica. Danger value = 10');
-        dangerValue = 10;
-    }
-    else if (resultOfContinent === 2){
-        window.alert ('Africa. Danger value = 7');
-        dangerValue = 7;
-    }
-    else if (resultOfContinent === 3){
-        window.alert ('Asia. Danger value = 4');
-        dangerValue = 4;
-    }
-    else if (resultOfContinent === 4){
-        window.alert ('Australia. Danger value = 5');
-        dangerValue = 5;
-    }
-    else if (resultOfContinent === 5){
-        window.alert ('Europe. Danger value = 3');
-        dangerValue = 3;
-    }
-    else if (resultOfContinent === 6){
-        window.alert ('North America. Danger value = 4');
-        dangerValue = 4;
-    }
-    else{
-        window.alert ('South America. Danger value = 6');
-        dangerValue = 6;
+        var row1 = table.insertRow(1);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Continent";
+        cell2.innerHTML = "South America";
+        cell3.innerHTML = "6";
     }
     return dangerValue;
 }
 
 function determineSeason (dangerValue, resultOfSeason){
+    var table = document.getElementById("overallTable");
     if (resultOfSeason === 1) {
-        window.alert ('Winter. Danger value = 8');
         dangerValue = dangerValue + 8;
+        var row1 = table.insertRow(2);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Season";
+        cell2.innerHTML = "Winter";
+        cell3.innerHTML = "8";
     }
     else if (resultOfSeason === 2) {
-        window.alert ('Fall. Danger value = 3');
         dangerValue = dangerValue + 3;
+        var row1 = table.insertRow(2);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Season";
+        cell2.innerHTML = "Fall";
+        cell3.innerHTML = "3";
     }
     else if (resultOfSeason === 3) {
-        window.alert ('Summer. Danger value = 1');
         dangerValue = dangerValue + 1;
+        var row1 = table.insertRow(2);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Season";
+        cell2.innerHTML = "Summer";
+        cell3.innerHTML = "1";
     }
     else {
-        window.alert ('Spring. Danger value = 3');
         dangerValue = dangerValue + 3;
+        var row1 = table.insertRow(2);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Season";
+        cell2.innerHTML = "Spring";
+        cell3.innerHTML = "3";
     }
     return dangerValue;
 }
 
 function determineAccomodation(dangerValue, resultOfAccommodation){
+    var table = document.getElementById("overallTable");
     if (resultOfAccommodation === 1){
-        window.alert ('5 star hotel. Danger value = 1');
         dangerValue = dangerValue + 1;
+        var row1 = table.insertRow(3);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Accommodation";
+        cell2.innerHTML = "5 star hotel";
+        cell3.innerHTML = "1";
     }
     else if (resultOfAccommodation === 2) {
-        window.alert ('Backpackers Tent. Danger value = 6');
         dangerValue = dangerValue + 6;
+        var row1 = table.insertRow(3);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Accommodation";
+        cell2.innerHTML = "Backpackers Tent";
+        cell3.innerHTML = "6";
     }
     else if (resultOfAccommodation === 3) {
-        window.alert ('Couch surfing. Danger value = 7');
         dangerValue = dangerValue + 7;
+        var row1 = table.insertRow(3);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Accommodation";
+        cell2.innerHTML = "Couch surfing";
+        cell3.innerHTML = "7";
     }
     else if (resultOfAccommodation === 4) {
-        window.alert ('Hostel. Danger value = 5');
         dangerValue = dangerValue + 5;
+        var row1 = table.insertRow(3);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Accommodation";
+        cell2.innerHTML = "Hostel";
+        cell3.innerHTML = "5";
     }
     else if (resultOfAccommodation === 5) {
-        window.alert ('Visiting a friend. Danger value = 1');
         dangerValue = dangerValue + 1;
+        var row1 = table.insertRow(3);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Accommodation";
+        cell2.innerHTML = "Visiting a friend";
+        cell3.innerHTML = "1";
     }
     else {
-        window.alert ('No plans on where to sleep. Danger value = 8');
         dangerValue = dangerValue + 8;
+        var row1 = table.insertRow(3);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Accommodation";
+        cell2.innerHTML = "No plans on where to sleep";
+        cell3.innerHTML = "8";
     }
     return dangerValue;
 }
 
 function determineDisaster (dangerValue, resultOfDisaster){
+        var table = document.getElementById("overallTable");
         if (resultOfDisaster === 1){
-        window.alert ('Wind kicks up to 12 mph from the northwest. Danger value = 1');
         dangerValue = dangerValue + 1;
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "Wind kicks up to 12 mph from the northwest";
+        cell3.innerHTML = "1";
     }
     else if (resultOfDisaster === 2){
-        window.alert ('Abducted by terrorist organization. Danger value = 10');
         dangerValue = dangerValue + 10;
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "Abducted by terrorist organization";
+        cell3.innerHTML = "10";
     }
     else if (resultOfDisaster === 3){
-        window.alert ('Outbreak of yellow fever. Danger value = 3');
         dangerValue = dangerValue + 3;
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "Outbreak of yellow fever";
+        cell3.innerHTML = "3";
+        
     }
     else if (resultOfDisaster === 4){
-        window.alert ('Earthquake in the countryside. Danger value = 5');
         dangerValue = dangerValue + 5;
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "Earthquake in the countryside";
+        cell3.innerHTML = "5";
     }
     else if (resultOfDisaster === 5){
-        window.alert ('Tornado. Danger value = 6');
         dangerValue = dangerValue + 6;
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "Tornado";
+        cell3.innerHTML = "6";
     }
     else if (resultOfDisaster === 6){
-        window.alert ('Ate undercooked meat. Danger value = 2');
         dangerValue = dangerValue + 2;
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "Ate undercooked meat";
+        cell3.innerHTML = "2";
     }
     else if (resultOfDisaster === 7){
-        window.alert ('Broken leg from car accident. Danger value = 2');
         dangerValue = dangerValue + 2; 
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "Broken leg from car accident";
+        cell3.innerHTML = "2";
     }
     else if (resultOfDisaster === 8){
-        window.alert ('No disaster on your trip. Danger value = 0');
         dangerValue = dangerValue + 0;
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "No disaster on your trip";
+        cell3.innerHTML = "0";
     }
     else if (resultOfDisaster === 9){
-        window.alert ('Attacked by jungle cat. Danger value = 5');
         dangerValue = dangerValue + 5;
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "Attacked by jungle cat";
+        cell3.innerHTML = "5";
     }
     else if (resultOfDisaster === 10){
-        window.alert ('Moped wipeout. Danger value = 2');
         dangerValue = dangerValue + 2;
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "Moped wipeout";
+        cell3.innerHTML = "2";
     }
     else if (resultOfDisaster === 11){
-        window.alert ('Bar fight with the locals. Danger value = 3');
         dangerValue = dangerValue + 3;
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "Bar fight with the locals";
+        cell3.innerHTML = "3";
     }
     else{
-        window.alert('Cattle impedes traffic. Danger value = 2');
         dangerValue = dangerValue + 2;
+        var row1 = table.insertRow(4);
+        var cell1 = row1.insertCell(0);
+        var cell2 = row1.insertCell(1);
+        var cell3 = row1.insertCell(2);
+        cell1.innerHTML = "Disaster";
+        cell2.innerHTML = "Cattle impedes traffic";
+        cell3.innerHTML = "2";
     }
     return dangerValue;
 }
