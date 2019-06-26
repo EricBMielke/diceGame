@@ -5,7 +5,6 @@ function rollDice(numberOfSides){
     let randomNumber = Math.floor((Math.random() * (numberOfSides) + 1));
     return randomNumber
 }
-
 function rollWeightedDice(dangerValue){
     //5-Sided dice roll <-- based off the weight.arrays length of 5 different strings
     if (dangerValue > 20) {
@@ -23,11 +22,10 @@ function rollWeightedDice(dangerValue){
         return dangerValue;
     }
 }
-
 //Gameplay
 function runGame(){
     let dangerValue = 0;
-    let firstDangerValue = false;
+    textReset();
     clearExtraRow();
     let resultOfContinent = rollDice(7);
     dangerValue = determineContinent(dangerValue, resultOfContinent);
@@ -42,39 +40,13 @@ function runGame(){
     }
     if (document.getElementById('vetCheck').checked == true){
         dangerValue = dangerValue / 2;
-
     }
     dangerValue = luckyPersonCheck(dangerValue, resultOfContinent, resultOfSeason, resultOfAccommodation, resultOfDisaster);
     dangerValue = rollWeightedDice(dangerValue);
     document.getElementById("Welcome").innerHTML = "And how you fared";
     document.getElementById("overallScore").innerHTML = dangerValue;
-    
-
-    // if (replayPrompt == "yes" || replayPrompt == "Yes"){
-    //     firstDangerValue = dangerValue;
-    //     runGame ('Replay');
-    // }
-    // else {
-    //     firstDangerValue = false;
-    //     let trainingMode = window.prompt ("Would you like to enter training mode");
-    //     if (trainingMode == 'yes' || trainingMode == 'Yes'){
-    //         window.location.href = "C:/Users/Eric/Documents/devCodeCamp/diceGame/training.html"
-
-    //     }
-    // }
-    // if (firstDangerValue){
-    //     if (firstDangerValue > dangerValue){
-    //         window.alert('Your fate did not improve from the previous attempt.');
-    //     }
-    //     else {
-    //         window.alert('Better score than your last vacation. You are getting better at this thing!');
-    //     }
-    // }
-    document.getElementById("dangerNumber").innerHTML = dangerValue;
     overallResult(dangerValue);
-
 }
-
 function determineContinent(dangerValue, resultOfContinent){
     var table = document.getElementById("overallTable");
     if (resultOfContinent === 1){
@@ -151,7 +123,6 @@ function determineContinent(dangerValue, resultOfContinent){
     }
     return dangerValue;
 }
-
 function determineSeason (dangerValue, resultOfSeason){
     var table = document.getElementById("overallTable");
     if (resultOfSeason === 1) {
@@ -196,7 +167,6 @@ function determineSeason (dangerValue, resultOfSeason){
     }
     return dangerValue;
 }
-
 function determineAccomodation(dangerValue, resultOfAccommodation){
     var table = document.getElementById("overallTable");
     if (resultOfAccommodation === 1){
@@ -261,7 +231,6 @@ function determineAccomodation(dangerValue, resultOfAccommodation){
     }
     return dangerValue;
 }
-
 function determineDisaster (dangerValue, resultOfDisaster){
         var table = document.getElementById("overallTable");
         if (resultOfDisaster === 1){
@@ -387,12 +356,10 @@ function determineDisaster (dangerValue, resultOfDisaster){
     }
     return dangerValue;
 }
-
 function experiencedTraveler (dangerValue){
     dangerValue = dangerValue * (rollDice(10) / 5) * 1.2;
     return dangerValue; 
 }
-
 function luckyPersonCheck (dangerValue, resultOfDisaster, resultOfAccommodation, resultOfContinent, resultOfSeason){
     if (resultOfDisaster == resultOfAccommodation || resultOfAccommodation == resultOfSeason || resultOfSeason == resultOfDisaster || resultOfContinent == resultOfSeason || resultOfContinent == resultOfDisaster || resultOfContinent == resultOfAccommodation ) {
     window.alert('And you are one lucky individual');
@@ -401,9 +368,7 @@ function luckyPersonCheck (dangerValue, resultOfDisaster, resultOfAccommodation,
     }
     return dangerValue;
 }
-
 function overallResult (dangerValue){
-
     if (dangerValue < 5){
     document.getElementById("whatHappened").innerHTML = 'Result: You miraculously made it out alive. Recovery time: 1 day';
     }
@@ -428,9 +393,14 @@ function overallResult (dangerValue){
     else {
     document.getElementById("whatHappened").innerHTML = 'Result: Months of agonizing fighting to overcome the injuries that were suffered.  Died.';
     }
+    if (dangerValue < 20){
+    addWinningPic();
+    }
+    else {
+    addLosingPic();
+    }
     return dangerValue;
 }
-
 function oneFinalAttempt (){
     var response = document.getElementById("retryInput").value;
     let valueToGrab = document.getElementById("dangerNumber").innerHTML;
@@ -440,11 +410,8 @@ function oneFinalAttempt (){
     let weightedValue = weight [weightedArray-1];
     dangerValue = weightedValue * valueToGrab;
     runGame('retry');
+    }
     return dangerValue;
-    }
-    else{
-    console.log ('Thanks for playing');
-    }
 }
 function clearExtraRow(){
     var table = document.getElementById("overallTable");
@@ -453,17 +420,36 @@ function clearExtraRow(){
         table.deleteRow(i);
     }
 }
+function textReset (){
+    document.getElementById("vetAppreciation").innerHTML = "";
+    document.getElementById("luckMultiplier").innerHTML = "";
+
+}
 function vetThank (){
     var checkBox = document.getElementById("vetCheck");
     if (checkBox.checked == true){
-        window.alert ('Thank you for your service');
+        document.getElementById("vetAppreciation").innerHTML = "Thank you for all you've done.";
     }
 }
-
 function needTraining (){
     var checkBox = document.getElementById("needTraining");
     if (checkBox.checked == true){
         window.location.href = "C:/Users/Eric/Documents/devCodeCamp/diceGame2/training.html"
     }
-
+}
+function addWinningPic() {
+    var src = "winning.jpg";
+    show_image("winning.jpg", 276,110, " Winning Picture");
+}
+function addLosingPic() {
+    var src = "losing.jpg";
+    show_image("losing.jpg", 276,110, " Losing Picture");
+}
+function show_image(src, width, height, alt) {
+    var img = document.createElement("img");
+    img.src = src;
+    img.width = width;
+    img.height = height;
+    img.alt = alt;
+    document.body.appendChild(img);
 }
