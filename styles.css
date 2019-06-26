@@ -27,6 +27,9 @@ table, th, td {
         border: 1px solid black;
 }
 table {
-    background:grey
+    background:grey;
+}
+p{
+    background-color:grey;
 }
       

@@ -415,28 +415,28 @@ function luckyPersonCheck (dangerValue, resultOfDisaster, resultOfAccommodation,
 function overallResult (dangerValue){
 
     if (dangerValue < 5){
-    window.alert ('You miraculously made it out alive. Recovery time: 1 day.')
+    document.getElementById("whatHappened").innerHTML = 'You miraculously made it out alive. Recovery time: 1 day';
     }
     else if (5 < dangerValue && dangerValue< 10){
-    window.alert ('One broken arm is not awful. You live to fight another day. Recovery time: 6 weeks.');
+    document.getElementById("whatHappened").innerHTML = 'One broken arm is not awful. You live to fight another day. Recovery time: 6 weeks.';
     }
     else if (10 < dangerValue && dangerValue < 15){
-    window.alert ('Alive, but scarred. You suffered traumatic brain injuries and have partial memory loss. Recovery time: Years of therapy');
+    document.getElementById("whatHappened").innerHTML = 'Alive, but scarred. You suffered traumatic brain injuries and have partial memory loss. Recovery time: Years of therapy';
     }
     else if (15 < dangerValue && dangerValue < 20){
-    window.alert ('Loss of legs coupled with  severe speach impediment. Recovery time: Full recovery is an impossibility.');
+     document.getElementById("whatHappened").innerHTML = 'Loss of legs coupled with  severe speach impediment. Recovery time: Full recovery is an impossibility.';
     }
     else if (20 < dangerValue && dangerValue < 25){
-    window.alert ('Admitted into the hospital, 2 days in a coma. Died.');
+    document.getElementById("whatHappened").innerHTML = 'Admitted into the hospital, 2 days in a coma. Died.';
     }
     else if (25 < dangerValue && dangerValue < 30){
-    window.alert ('Complication with recovery surgery, 2 weeks in the ICU. Died.');
+    document.getElementById("whatHappened").innerHTML = 'Complication with recovery surgery, 2 weeks in the ICU. Died.';
     }
     else if (30 < dangerValue && dangerValue < 35){
-    window.alert ('Brain hemorhagging. One month of vision impairment, followed by 1 month of muscle distrophy. Died. ');   
+    document.getElementById("whatHappened").innerHTML = 'Brain hemorhagging. One month of vision impairment, followed by 1 month of muscle distrophy. Died.';
     }
     else {
-    window.alert ('Months of agonizing fighting to overcome the injuries that were suffered.  Died.')
+    document.getElementById("whatHappened").innerHTML = 'Months of agonizing fighting to overcome the injuries that were suffered.  Died.';
     }
     return dangerValue;
 }
@@ -449,6 +449,7 @@ function oneFinalAttempt (){
     let weightedArray = rollDice(weight.length);
     let weightedValue = weight [weightedArray-1];
     dangerValue = weightedValue * valueToGrab;
+    overallTable.tbody.tr.remove(); 
     console.log ('YAY');
     return dangerValue;
     }
