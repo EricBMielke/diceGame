@@ -6,19 +6,22 @@
         <title>Vacation Roullette</title>
     </head>
 <body>
-    <div id="stuff" hidden></div>
-<button onclick= "runGame('lets begin')" class ='button'>Play disaster vacation!</button>
-    <table id = "overallTable">
+    <div id="dangerNumber" hidden></div>
+<button align = "center" onclick= "runGame('lets begin')" class ='button'>Play disaster vacation!</button>
+<h1>How you fared</h1>
+    <table align="center" id = "overallTable">
             <tr>
               <th>Category</th>
               <th>Result</th>
               <th>Danger Value</th>
             </tr>
           </table>
-        <p id = "whatHappened">Result</p>
-        <p style = "background-color:grey" >Do you want to retry your luck? <input id="thing">
-
+        <p id = "luckMultiplier"></p>
+        <p id = "whatHappened">Result:None yet</p>
+        <p style = "background-color:grey" >Do you want to retry your luck? <input id="retryInput">
     <button onclick = "oneFinalAttempt()">Submit</button>
+    <p id = "overallScore">Your overall score: 0</p>
+
 
 <!--Always load JS last because if HTML isn't loaded, the script is going to be pointing at null classes-->
     <script src="index.js"></script>

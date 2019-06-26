@@ -44,10 +44,12 @@ function runGame(str){
     // }
     // window.alert('Based on experience, your new level of danger is ' + dangerValue + '. Click okay to determine your fate');
     // window.alert('Here comes one of your final chances to get lucky');
-    dangerValue = rollWeightedDice(dangerValue);
-    // window.alert('Your overall danger score is ' + dangerValue);
     dangerValue = luckyPersonCheck(dangerValue, resultOfContinent, resultOfSeason, resultOfAccommodation, resultOfDisaster);
-    console.log(overallResult (dangerValue));
+
+    dangerValue = rollWeightedDice(dangerValue);
+    document.getElementById("overallScore").innerHTML = dangerValue;
+
+    // window.alert('Your overall danger score is ' + dangerValue);
     // let replayPrompt = window.prompt ("Are you willing to risk it all again?");
     // if (replayPrompt == "yes" || replayPrompt == "Yes"){
     //     firstDangerValue = dangerValue;
@@ -69,7 +71,8 @@ function runGame(str){
     //         window.alert('Better score than your last vacation. You are getting better at this thing!');
     //     }
     // }
-    document.getElementById("stuff").innerHTML = dangerValue;
+    document.getElementById("dangerNumber").innerHTML = dangerValue;
+    overallResult(dangerValue);
 
 }
 
@@ -405,9 +408,8 @@ function experiencedTraveler (dangerValue, experience){
 
 function luckyPersonCheck (dangerValue, resultOfDisaster, resultOfAccommodation, resultOfContinent, resultOfSeason){
     if (resultOfDisaster == resultOfAccommodation || resultOfAccommodation == resultOfSeason || resultOfSeason == resultOfDisaster || resultOfContinent == resultOfSeason || resultOfContinent == resultOfDisaster || resultOfContinent == resultOfAccommodation ) {
-    window.alert ("But wait, you rolled doubles in the game, you must be lucky, you are prepared for the worst, your Danger Value is cut in half");
+    document.getElementById("luckMultiplier").innerHTML = 'But wait, you rolled doubles in the game, you must be lucky, you are prepared for the worst, your Danger Value is cut in half';
     dangerValue = dangerValue / 2;
-    window.alert('Your new overall danger score is ' + dangerValue);
     }
     return dangerValue;
 }
@@ -415,42 +417,41 @@ function luckyPersonCheck (dangerValue, resultOfDisaster, resultOfAccommodation,
 function overallResult (dangerValue){
 
     if (dangerValue < 5){
-    document.getElementById("whatHappened").innerHTML = 'You miraculously made it out alive. Recovery time: 1 day';
+    document.getElementById("whatHappened").innerHTML = 'Result: You miraculously made it out alive. Recovery time: 1 day';
     }
     else if (5 < dangerValue && dangerValue< 10){
-    document.getElementById("whatHappened").innerHTML = 'One broken arm is not awful. You live to fight another day. Recovery time: 6 weeks.';
+    document.getElementById("whatHappened").innerHTML = 'Result: One broken arm is not awful. You live to fight another day. Recovery time: 6 weeks.';
     }
     else if (10 < dangerValue && dangerValue < 15){
-    document.getElementById("whatHappened").innerHTML = 'Alive, but scarred. You suffered traumatic brain injuries and have partial memory loss. Recovery time: Years of therapy';
+    document.getElementById("whatHappened").innerHTML = 'Result: Alive, but scarred. You suffered traumatic brain injuries and have partial memory loss. Recovery time: Years of therapy';
     }
     else if (15 < dangerValue && dangerValue < 20){
-     document.getElementById("whatHappened").innerHTML = 'Loss of legs coupled with  severe speach impediment. Recovery time: Full recovery is an impossibility.';
+     document.getElementById("whatHappened").innerHTML = 'Result: Loss of legs coupled with  severe speach impediment. Recovery time: Full recovery is an impossibility.';
     }
     else if (20 < dangerValue && dangerValue < 25){
-    document.getElementById("whatHappened").innerHTML = 'Admitted into the hospital, 2 days in a coma. Died.';
+    document.getElementById("whatHappened").innerHTML = 'Result: Admitted into the hospital, 2 days in a coma. Died.';
     }
     else if (25 < dangerValue && dangerValue < 30){
-    document.getElementById("whatHappened").innerHTML = 'Complication with recovery surgery, 2 weeks in the ICU. Died.';
+    document.getElementById("whatHappened").innerHTML = 'Result: Complication with recovery surgery, 2 weeks in the ICU. Died.';
     }
     else if (30 < dangerValue && dangerValue < 35){
-    document.getElementById("whatHappened").innerHTML = 'Brain hemorhagging. One month of vision impairment, followed by 1 month of muscle distrophy. Died.';
+    document.getElementById("whatHappened").innerHTML = 'Result: Brain hemorhagging. One month of vision impairment, followed by 1 month of muscle distrophy. Died.';
     }
     else {
-    document.getElementById("whatHappened").innerHTML = 'Months of agonizing fighting to overcome the injuries that were suffered.  Died.';
+    document.getElementById("whatHappened").innerHTML = 'Result: Months of agonizing fighting to overcome the injuries that were suffered.  Died.';
     }
     return dangerValue;
 }
 
 function oneFinalAttempt (){
-    var response = document.getElementById("thing").value;
-    let valueToGrab = document.getElementById("stuff").innerHTML;
+    var response = document.getElementById("retryInput").value;
+    let valueToGrab = document.getElementById("dangerNumber").innerHTML;
     if (response == 'yes' || response == 'Yes'){
     let weight = [0.0,0.5,1.0,1.50,2.00]
     let weightedArray = rollDice(weight.length);
     let weightedValue = weight [weightedArray-1];
     dangerValue = weightedValue * valueToGrab;
-    overallTable.tbody.tr.remove(); 
-    console.log ('YAY');
+    runGame('retry');
     return dangerValue;
     }
     else{
