@@ -7,9 +7,9 @@
     </head>
 <body>
     <div id="dangerNumber" hidden></div>
-    <input type="checkbox" id="vetCheck"> I am a veteran <br>
-    <input type="checkbox" id="expTravCheck"> I am an experienced traveler <br>
-<button align = "center" onclick= "runGame('lets begin')" class ='button'>Play disaster vacation!</button>
+    <input class = "container" type="checkbox" id="vetCheck" onclick="vetThank()">I am a veteran <br>
+    <input class = "container" type="checkbox" id="expTravCheck">I am an experienced traveler <br>
+    <div style="text-align:center;"> <button onclick= "runGame('lets begin')" class ='button'>Play disaster vacation!</button> </div>
 <h1>How you fared</h1>
     <table align="center" id = "overallTable">
             <tr>
@@ -19,10 +19,10 @@
             </tr>
           </table>
         <p id = "luckMultiplier"></p>
-        <p id = "whatHappened">Result:None yet</p>
+        <h2 id = "whatHappened">Result:None yet</h2>
         <p style = "background-color:grey" >Do you want to retry your luck? <input id="retryInput">
     <button onclick = "oneFinalAttempt()">Submit</button>
-    <p id = "overallScore">Your overall score: 0</p>
+    <p>Total Score</p><p id ="overallScore">0</p>
 
 
 <!--Always load JS last because if HTML isn't loaded, the script is going to be pointing at null classes-->

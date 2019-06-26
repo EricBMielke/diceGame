@@ -31,9 +31,10 @@ function vetThank (){
     }
 }
 //Gameplay
-function runGame(str){
+function runGame(){
     let dangerValue = 0;
     let firstDangerValue = false;
+    clearExtraRow();
     let resultOfContinent = rollDice(7);
     dangerValue = determineContinent(dangerValue, resultOfContinent);
     let resultOfSeason = rollDice(4);
@@ -42,10 +43,10 @@ function runGame(str){
     dangerValue = determineAccomodation (dangerValue, resultOfAccommodation);
     let resultOfDisaster = rollDice(12);
     dangerValue = determineDisaster (dangerValue, resultOfDisaster);
-    if (document.getElementById('expTravCheck').checked = true){
+    if (document.getElementById('expTravCheck').checked == true){
         dangerValue = experiencedTraveler (dangerValue);
     }
-    if (document.getElementById('vetCheck').checked = true){
+    if (document.getElementById('vetCheck').checked == true){
         dangerValue = dangerValue / 2;
 
     }
@@ -446,5 +447,12 @@ function oneFinalAttempt (){
     }
     else{
     console.log ('Thanks for playing');
+    }
+}
+function clearExtraRow(){
+    var table = document.getElementById("overallTable");
+    for(var i = table.rows.length - 1; i > 0; i--)
+    {
+        table.deleteRow(i);
     }
 }
