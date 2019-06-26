@@ -19,13 +19,15 @@
               <th>Danger Value</th>
             </tr>
           </table>
+        <p id = "rollOfTheDay"></p>
+        <p id = "weightedRollPhrase"></p>
         <p id = "luckMultiplier"></p>
         <h2 id = "whatHappened">Result:None yet</h2>
         <h2 id ="overallScore">Score : 0 </h2>
         <p>Retry your luck? <input id="retryInput">
     <button onclick = "oneFinalAttempt()">Submit</button>
     <p><b><center><input class = "container" type="checkbox" id="needTraining" onclick="needTraining()">I need training</center> </b><br>
-
+    <h2>Results</h2>
 
 <!--Always load JS last because if HTML isn't loaded, the script is going to be pointing at null classes-->
     <script src="index.js"></script>

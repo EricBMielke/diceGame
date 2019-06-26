@@ -8,14 +8,16 @@ function rollDice(numberOfSides){
 function rollWeightedDice(dangerValue){
     //5-Sided dice roll <-- based off the weight.arrays length of 5 different strings
     if (dangerValue > 20) {
-        let weight = [0.70,0.90,1.10,1.30,1.50]
+        document.getElementById("weightedRollPhrase").innerHTML = "Your initial rolls put you in a dangerous place, we did a weighted roll to try and even the odds.";
+        let weight = [0.50,0.70,0.90,1.10,1.30]
         let weightedArray = rollDice(weight.length);
         let weightedValue = weight [weightedArray-1];
         dangerValue = weightedValue * dangerValue;
         return dangerValue;
     }
     else {
-        let weight = [0.50,0.70,0.90,1.10,1.30]
+        document.getElementById("weightedRollPhrase").innerHTML = "Your initial rolls put you in a safe place, we did a weighted roll to try and turn the tables.";
+        let weight = [0.70,0.90,1.10,1.30,1.50]
         let weightedArray = rollDice(weight.length);
         let weightedValue = weight [weightedArray- 1];
         dangerValue = weightedValue * dangerValue;
@@ -35,6 +37,8 @@ function runGame(){
     dangerValue = determineAccomodation (dangerValue, resultOfAccommodation);
     let resultOfDisaster = rollDice(12);
     dangerValue = determineDisaster (dangerValue, resultOfDisaster);
+    let resultOfOutlier = rollDice(100);
+    dangerValue = determineOutlier (dangerValue, resultOfOutlier);
     if (document.getElementById('expTravCheck').checked == true){
         dangerValue = experiencedTraveler (dangerValue);
     }
@@ -356,13 +360,19 @@ function determineDisaster (dangerValue, resultOfDisaster){
     }
     return dangerValue;
 }
+function determineOutlier(dangerValue, resultOfOutlier){
+    if (resultOfOutlier === 45){
+        dangerValue +=1000;
+        document.getElementById("rollOfTheDay").innerHTML = 'You are 1 in 100. You are now guaranteed death.';
+    }
+    return dangerValue;
+}
 function experiencedTraveler (dangerValue){
-    dangerValue = dangerValue * (rollDice(10) / 5) * 1.2;
+    dangerValue = dangerValue * (rollDice(10) / 5) * .8;
     return dangerValue; 
 }
 function luckyPersonCheck (dangerValue, resultOfDisaster, resultOfAccommodation, resultOfContinent, resultOfSeason){
     if (resultOfDisaster == resultOfAccommodation || resultOfAccommodation == resultOfSeason || resultOfSeason == resultOfDisaster || resultOfContinent == resultOfSeason || resultOfContinent == resultOfDisaster || resultOfContinent == resultOfAccommodation ) {
-    window.alert('And you are one lucky individual');
     document.getElementById("luckMultiplier").innerHTML = 'But wait, you rolled doubles in the game, you must be lucky, you are prepared for the worst, your Danger Value is cut in half';
     dangerValue = dangerValue / 2;
     }
@@ -422,7 +432,9 @@ function clearExtraRow(){
 }
 function textReset (){
     document.getElementById("vetAppreciation").innerHTML = "";
+    document.getElementById("rollOfTheDay").innerHTML = "";
     document.getElementById("luckMultiplier").innerHTML = "";
+    document.getElementById("weightedRollPhrase").innerHTML = "";
 
 }
 function vetThank (){
@@ -451,5 +463,6 @@ function show_image(src, width, height, alt) {
     img.width = width;
     img.height = height;
     img.alt = alt;
+
     document.body.appendChild(img);
 }
