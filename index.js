@@ -24,6 +24,12 @@ function rollWeightedDice(dangerValue){
     }
 }
 
+function vetThank (){
+    var checkBox = document.getElementById("vetCheck");
+    if (checkBox.checked == true){
+        window.alert ('Thank you for your service');
+    }
+}
 //Gameplay
 function runGame(str){
     let dangerValue = 0;
@@ -36,21 +42,16 @@ function runGame(str){
     dangerValue = determineAccomodation (dangerValue, resultOfAccommodation);
     let resultOfDisaster = rollDice(12);
     dangerValue = determineDisaster (dangerValue, resultOfDisaster);
-    // let experience = window.prompt('On a scale of 1-3, how experienced of a traveler are you?');
-    // dangerValue = experiencedTraveler (dangerValue, experience);
-    // let veteranStatus = window.prompt ("Are you a retired military veteran?");
-    // if ( veteranStatus == "yes" || veteranStatus == "Yes") {
-    //     dangerValue = dangerValue / 2;
-    // }
-    // window.alert('Based on experience, your new level of danger is ' + dangerValue + '. Click okay to determine your fate');
-    // window.alert('Here comes one of your final chances to get lucky');
-    dangerValue = luckyPersonCheck(dangerValue, resultOfContinent, resultOfSeason, resultOfAccommodation, resultOfDisaster);
+    if (document.getElementById('expTravCheck').checked = true){
+        dangerValue = experiencedTraveler (dangerValue);
+    }
+    if (document.getElementById('vetCheck').checked = true){
+        dangerValue = dangerValue / 2;
 
+    }
+    dangerValue = luckyPersonCheck(dangerValue, resultOfContinent, resultOfSeason, resultOfAccommodation, resultOfDisaster);
     dangerValue = rollWeightedDice(dangerValue);
     document.getElementById("overallScore").innerHTML = dangerValue;
-
-    // window.alert('Your overall danger score is ' + dangerValue);
-    // let replayPrompt = window.prompt ("Are you willing to risk it all again?");
     // if (replayPrompt == "yes" || replayPrompt == "Yes"){
     //     firstDangerValue = dangerValue;
     //     runGame ('Replay');
@@ -389,25 +390,14 @@ function determineDisaster (dangerValue, resultOfDisaster){
     return dangerValue;
 }
 
-function experiencedTraveler (dangerValue, experience){
-    //Incorporating a 10 sided dice to help determine what the multiplier is for the level of experience of the user
-    if (experience == "1"){
-        dangerValue = dangerValue * (rollDice(10) / 5) * 1.2;
-    }
-    else if (experience == "2"){
-        dangerValue = dangerValue * (rollDice(10) / 5) * 1;
-    }
-    else if (experience == "3"){
-        dangerValue = dangerValue * (rollDice(10) / 5) * .8;
-    }
-    else {
-        dangerValue = dangerValue * (rollDice(10) / 5) * 1;
-    }
+function experiencedTraveler (dangerValue){
+    dangerValue = dangerValue * (rollDice(10) / 5) * 1.2;
     return dangerValue; 
 }
 
 function luckyPersonCheck (dangerValue, resultOfDisaster, resultOfAccommodation, resultOfContinent, resultOfSeason){
     if (resultOfDisaster == resultOfAccommodation || resultOfAccommodation == resultOfSeason || resultOfSeason == resultOfDisaster || resultOfContinent == resultOfSeason || resultOfContinent == resultOfDisaster || resultOfContinent == resultOfAccommodation ) {
+    window.alert('And you are one lucky individual');
     document.getElementById("luckMultiplier").innerHTML = 'But wait, you rolled doubles in the game, you must be lucky, you are prepared for the worst, your Danger Value is cut in half';
     dangerValue = dangerValue / 2;
     }
