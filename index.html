@@ -7,10 +7,10 @@
     </head>
 <body>
     <div id="dangerNumber" hidden></div>
-    <input class = "container" type="checkbox" id="vetCheck" onclick="vetThank()">I am a veteran <br>
-    <input class = "container" type="checkbox" id="expTravCheck">I am an experienced traveler <br>
-    <div style="text-align:center;"> <button onclick= "runGame('lets begin')" class ='button'>Play disaster vacation!</button> </div>
-<h1>How you fared</h1>
+    <p><center><input class = "container" type="checkbox" id="vetCheck" onclick="vetThank()">I am a veteran</center> <br>
+    <center><input class = "container" type="checkbox" id="expTravCheck">I am an experienced traveler</center><br></p>
+    <div class ="buttonSpecs"><button onclick= "runGame('lets begin')" class ='button'>Play disaster vacation!</button></div>
+    <h1 id ="Welcome">Your wild adventure awaits</h1>
     <table align="center" id = "overallTable">
             <tr>
               <th>Category</th>
@@ -20,9 +20,10 @@
           </table>
         <p id = "luckMultiplier"></p>
         <h2 id = "whatHappened">Result:None yet</h2>
-        <p style = "background-color:grey" >Do you want to retry your luck? <input id="retryInput">
+        <h2 id ="overallScore">Score : 0 </h2>
+        <p>Retry your luck? <input id="retryInput">
     <button onclick = "oneFinalAttempt()">Submit</button>
-    <p>Total Score</p><p id ="overallScore">0</p>
+    <p><b><center><input class = "container" type="checkbox" id="needTraining" onclick="needTraining()">I need training</center> </b><br>
 
 
 <!--Always load JS last because if HTML isn't loaded, the script is going to be pointing at null classes-->

@@ -7,34 +7,29 @@
     left:0px;
     top:0px;
 }
-.button {
-    background-color: grey;
-    border: black;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex; 
-    justify-content: center;
-      }
 table, th, td {
         border: 1px solid black;
         text-align: center;
 }
 table {
-    background:grey;
+    background:transparent;
 }
 p{
-    background-color:grey;
     text-align: center;
 }
 h1{
-    background-color:grey;
     text-align: center;
 }
 h2{
-    background-color:grey;
     text-align: center;
 }
+
+.buttonSpecs{
+    border: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 32px;
+    text-align: center;
+  }

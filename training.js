@@ -23,7 +23,7 @@ while (experienceTraining){
     }
 }
 confirm("Click okay to return to Vacation Roullette");
-window.location.href = "C:/Users/Eric/Documents/devCodeCamp/diceGame/index.html"
+window.location.href = "C:/Users/Eric/Documents/devCodeCamp/diceGame2/index.html"
 
 
     

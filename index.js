@@ -24,12 +24,6 @@ function rollWeightedDice(dangerValue){
     }
 }
 
-function vetThank (){
-    var checkBox = document.getElementById("vetCheck");
-    if (checkBox.checked == true){
-        window.alert ('Thank you for your service');
-    }
-}
 //Gameplay
 function runGame(){
     let dangerValue = 0;
@@ -52,7 +46,10 @@ function runGame(){
     }
     dangerValue = luckyPersonCheck(dangerValue, resultOfContinent, resultOfSeason, resultOfAccommodation, resultOfDisaster);
     dangerValue = rollWeightedDice(dangerValue);
+    document.getElementById("Welcome").innerHTML = "And how you fared";
     document.getElementById("overallScore").innerHTML = dangerValue;
+    
+
     // if (replayPrompt == "yes" || replayPrompt == "Yes"){
     //     firstDangerValue = dangerValue;
     //     runGame ('Replay');
@@ -455,4 +452,18 @@ function clearExtraRow(){
     {
         table.deleteRow(i);
     }
+}
+function vetThank (){
+    var checkBox = document.getElementById("vetCheck");
+    if (checkBox.checked == true){
+        window.alert ('Thank you for your service');
+    }
+}
+
+function needTraining (){
+    var checkBox = document.getElementById("needTraining");
+    if (checkBox.checked == true){
+        window.location.href = "C:/Users/Eric/Documents/devCodeCamp/diceGame2/training.html"
+    }
+
 }
